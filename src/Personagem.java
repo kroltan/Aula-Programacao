@@ -3,22 +3,21 @@ import java.awt.Graphics2D;
 public abstract class Personagem extends Sprite {
 
 	public short vel;
-	public double angle;
-	public short oldX, oldY;
-	public boolean Vivo;
+	public Vector2D oldPos;
+	public Vector2D acceleration;
+	public boolean vivo;
 	public boolean LEFT;
 	public boolean RIGHT;
 	public boolean UP;
 	public boolean DOWN;
-	public boolean LEFTUP;
-	public boolean RIGHTUP;
-	public boolean LEFTDOWN;
-	public boolean RIGHTDOWN;
+	public boolean colidindo;
 
 	public Personagem(short _posX, short _posY, short _sizeX, short _sizeY,
 			short _vel) {
 		super(_posX, _posY, _sizeX, _sizeY);
 		vel = _vel;
+		oldPos = new Vector2D(_posX,_posY);
+		acceleration = new Vector2D(0,0);
 	}
 
 	/**

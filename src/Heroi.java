@@ -12,39 +12,45 @@ public class Heroi extends Personagem {
 	@Override
 	public void DesenhaSe(Graphics2D dbg) {
 		dbg.setColor(Color.YELLOW);
-		dbg.fillRect((int) posX, (int) posY, (int) sizeX, (int) sizeY);
+		dbg.fillRect((int) pos.x, (int) pos.y, (int) size.x, (int) size.y);
 	}
 
 	@Override
 	public void SimulaSe(long DiffTime) {
-
-		oldX = posX;
-		oldY = posY;
-		if (CanvasGame.instance.DOWN) {
-			posY += vel * DiffTime / 1000.0f;
+		for (int i = 0; i < GerenciadorDeJogo.instancia.obstaculos.size(); i++) {
+			Sprite colisor = GerenciadorDeJogo.instancia.obstaculos.get(i);
+			if (Constantes.colideRetangulo(this, colisor)) {
+				colidindo = true;
+			} else {
+				colidindo = false;
+			}
 		}
-		if (CanvasGame.instance.UP) {
-			posY -= vel * DiffTime / 1000.0f;
+		oldPos.x = pos.x;
+		oldPos.y = pos.y;
+		if (CanvasGame.instance.DOWN) {
+			pos.y += vel * DiffTime / 1000.0f;
+		}
+		if (CanvasGame.instance.UP && colidindo) {
+			pos.y -= (vel * DiffTime / 1000.0f)/2;
 		} else {
-			posY += GerenciadorDeJogo.instancia.gravidade * DiffTime/ 100.0f;
+			pos.y += GerenciadorDeJogo.instancia.gravidade * DiffTime/ 100.0f;
 		}
 		if (CanvasGame.instance.LEFT) {
-			posX -= vel * DiffTime / 1000.0f;
+			pos.x -= (vel * DiffTime / 1000.0f)/2;
 		}
 		if (CanvasGame.instance.RIGHT) {
-			posX += vel * DiffTime / 1000.0f;
+			pos.x += vel * DiffTime / 1000.0f;
 		}
 		for (int i = 0; i < GerenciadorDeJogo.instancia.obstaculos.size(); i++) {
 			Sprite colisor = GerenciadorDeJogo.instancia.obstaculos.get(i);
-			if (posX+sizeX >= colisor.posX && posX <= colisor.posX+colisor.sizeX && 
-					posY+sizeY >= colisor.posY && posY <= colisor.posY+colisor.sizeY) {
-				posX = oldX;
-				posY = oldY;
+			if (Constantes.colideRetangulo(this, colisor)) {
+				pos.x = oldPos.x;
+				pos.y = oldPos.y;
 			}
 		}
 		if (Constantes.colideTela(this, GamePanel.PWIDTH, GamePanel.PHEIGHT)) {
-			posX = oldX;
-			posY = oldY;
+			pos.x = oldPos.x;
+			pos.y = oldPos.y;
 		}
 	}
 

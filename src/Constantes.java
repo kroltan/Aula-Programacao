@@ -32,16 +32,14 @@ public class Constantes {
 	}
 	
 	public static boolean colideRetangulo(Sprite colidindo, Sprite colisor) {
-		if (colidindo.posX+colidindo.sizeX >= colisor.posX && colidindo.posX <= colisor.posX+colisor.sizeX && 
-				colidindo.posY+colidindo.sizeY >= colisor.posY && colidindo.posY <= colisor.posY+colisor.sizeY) {
+		if (colidindo.pos.x+colidindo.size.x >= colisor.pos.x && colidindo.pos.x <= colisor.pos.x+colisor.size.x && colidindo.pos.y+colidindo.size.y >= colisor.pos.y && colidindo.pos.y <= colisor.pos.y+colisor.size.y) {
 			return true;
 		}
 		return false;
 	}
 	
 	public static boolean colideTela(Sprite colidindo, int sizeTelaX, int sizeTelaY) {
-		if (colidindo.posX+colidindo.sizeX <= sizeTelaX && colidindo.posX >= 0 && 
-				colidindo.posY+colidindo.sizeY <= sizeTelaY && colidindo.posY >= 0) {
+		if (colidindo.pos.x+colidindo.size.x <= sizeTelaX && colidindo.pos.x >= 0 && colidindo.pos.y+colidindo.size.y <= sizeTelaY && colidindo.pos.y >= 0) {
 			return false;
 		}
 		return true;

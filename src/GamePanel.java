@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public static boolean GameOver = false;
 	public static GamePanel instancia;
 	public int SFPS, FPS;
+	public int framesSinceStartup;
 	GCanvas CanvasAtivo;
 
 	@SuppressWarnings("static-access")
@@ -161,8 +162,6 @@ public class GamePanel extends JPanel implements Runnable {
 		int segundo = 0;
 		DifTime = 0;
 		TempoAnterior = System.currentTimeMillis();
-
-		System.currentTimeMillis();
 
 		while (running) {
 

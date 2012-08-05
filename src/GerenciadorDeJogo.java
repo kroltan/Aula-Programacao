@@ -23,14 +23,14 @@ public class GerenciadorDeJogo {
 	 * colocar os personagens sempre depois do mapa e objetos
 	 */
 	private void InstanciaObjetos() {
-		heroi = new Heroi((short)20, (short)20, (short)20, (short)20, (short) 100);
 		for (int i = 0; i < 15; i++) {
 			obstaculos.add(new Obstaculo((short)r.nextInt(GamePanel.PWIDTH), (short)r.nextInt(GamePanel.PWIDTH), (short)50, (short)50));
 		}
+		heroi = new Heroi((short)20, (short)20, (short)20, (short)20, (short) 100);
 	}
 
 	public void desenhaSe(Graphics2D dbg, int sizeX, int sizeY) {
-		dbg.setColor(new Color(0.0f, 0.0f, 0.0f, 0.1f));
+		dbg.setColor(new Color(0.0f, 0.0f, 0.0f, 0.25f));
 		dbg.fillRect(0, 0, sizeX, sizeY);
 		for (int i = 0; i < obstaculos.size(); i++) {
 			obstaculos.get(i).DesenhaSe(dbg, 0, 0);

@@ -17,7 +17,7 @@ public class Obstaculo extends Sprite {
 	public void DesenhaSe(Graphics2D dbg, int XMundo, int YMundo) {
 		// TODO Auto-generated method stub
 		dbg.setColor(Color.BLUE);
-		dbg.fillRect((int) posX, (int) posY, (int)sizeX, (int)sizeY);
+		dbg.fillRect((int) pos.x, (int) pos.y, (int)size.x, (int)size.y);
 	}
 
 }

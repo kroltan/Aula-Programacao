@@ -65,7 +65,10 @@ public class CanvasGame extends GCanvas {
 		if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
 			DOWN = true;
 		}
-
+		if (keyCode == KeyEvent.VK_R) {
+			GerenciadorDeJogo.instancia = new GerenciadorDeJogo();
+			gerenciadorDeJogo = GerenciadorDeJogo.instancia;
+		}
 	}
 
 	@Override
