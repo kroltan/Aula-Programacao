@@ -6,4 +6,11 @@ public class Vector2D {
 		x = _x;
 		y = _y;
 	}
+	public void add(Vector2D o) {
+		x+=o.x;
+		y+=o.y;
+	}
+	public String toString() {
+		return "X"+x+" Y"+y;
+	}
 }

@@ -17,7 +17,7 @@ public abstract class Personagem extends Sprite {
 		super(_posX, _posY, _sizeX, _sizeY);
 		vel = _vel;
 		oldPos = new Vector2D(_posX,_posY);
-		acceleration = new Vector2D(0,0);
+		acceleration = new Vector2D(0, 0);
 	}
 
 	/**

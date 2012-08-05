@@ -206,10 +206,6 @@ public class GamePanel extends JPanel implements Runnable {
 			CanvasAtivo.DesenhaSe(dbg);
 		}
 
-		dbg.setColor(Color.red);
-
-		dbg.drawString("FPS: " + FPS, 35, 250);
-
 	}
 
 	public void paintComponent(Graphics g) {
