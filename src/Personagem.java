@@ -10,7 +10,7 @@ public abstract class Personagem extends Sprite {
 	public boolean RIGHT;
 	public boolean UP;
 	public boolean DOWN;
-	public boolean colidindo;
+	public Colisao colidindo;
 
 	public Personagem(short _posX, short _posY, short _sizeX, short _sizeY,
 			short _vel) {

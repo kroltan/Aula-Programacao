@@ -3,16 +3,15 @@ import java.awt.Graphics2D;
 
 public class Heroi extends Personagem {
 
-	public float jumpSpeed = 2.0f;
-	public float maxSpeed = 2.0f;
+	public float jumpSpeed = 2.9f;
+	public float maxSpeed = 2.9f;
 	public int pontos = 0;
+	private boolean jumped;
 	private byte ultimaMoeda;
 	private byte framesMoeda = 5;
 
-	public Heroi(short _posX, short _posY, short _sizeX, short _sizeY,
-			short _vel) {
+	public Heroi(short _posX, short _posY, short _sizeX, short _sizeY, short _vel) {
 		super(_posX, _posY, _sizeX, _sizeY, _vel);
-
 	}
 
 	@Override
@@ -24,6 +23,14 @@ public class Heroi extends Personagem {
 			dbg.drawString(ultimaMoeda+"", pos.x+5, pos.y-20);
 			framesMoeda--;
 		}
+		//DEBUG DA AREA DE COLISAO
+		//dbg.setColor(Color.red);
+		//dbg.fillRect((int)pos.x, (int)pos.y, (int)size.x, (int)size.y);
+	}
+	@Override
+	public void DesenhaSe(Graphics2D dbg, int XMundo, int YMundo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -33,11 +40,15 @@ public class Heroi extends Personagem {
 		if (CanvasGame.instance.DOWN) {
 			acceleration.y += vel * DiffTime / 1000.0f;
 		}
-		if (CanvasGame.instance.UP && colidindo) {
+		if (CanvasGame.instance.UP && !jumped) {
+			jumped = true;
 			acceleration.y = -jumpSpeed;
 		} else {
 			acceleration.y += GerenciadorDeJogo.instancia.gravidade * DiffTime
 					/ 1000.0f;
+		}
+		if (!CanvasGame.instance.LEFT || !CanvasGame.instance.RIGHT) {
+			acceleration.x = 0;
 		}
 		if (CanvasGame.instance.LEFT) {
 			acceleration.x = -(vel * DiffTime / 1000.0f);
@@ -45,6 +56,7 @@ public class Heroi extends Personagem {
 		if (CanvasGame.instance.RIGHT) {
 			acceleration.x = vel * DiffTime / 1000.0f;
 		}
+		
 		if (acceleration.x > maxSpeed) {
 			acceleration.x = maxSpeed;
 		}
@@ -58,20 +70,20 @@ public class Heroi extends Personagem {
 			acceleration.y = -maxSpeed;
 		}
 		pos.add(acceleration);
-		colidindo = false;
+		colidindo = new Colisao(false, false, false, false);
 		for (int i = 0; i < GerenciadorDeJogo.instancia.obstaculos.size(); i++) {
 			Obstaculo colisor = GerenciadorDeJogo.instancia.obstaculos.get(i);
-			if (Constantes.colideRetangulo(this, colisor)) {
-				Colide();
-			}
+			Colide(Colisao.colideRetangulo(this, colisor));
 		}
-		if (Constantes.colideTela(this, GamePanel.PWIDTH, GamePanel.PHEIGHT)) {
-			Colide();
+		Colisao cTela = Colisao.colideTela(this, GamePanel.PWIDTH, GamePanel.PHEIGHT);
+		if (cTela.cima || cTela.baixo || cTela.esquerda || cTela.direita) {
+			Colide(cTela);
 		}
 		
 		for (int i = 0; i < GerenciadorDeJogo.instancia.moedas.size(); i++) {
 			Moeda colisor = GerenciadorDeJogo.instancia.moedas.get(i);
-			if (Constantes.colideRetangulo(this, colisor)) {
+			Colisao cMoeda = Colisao.colideRetangulo(this, colisor);
+			if (cMoeda.cima || cMoeda.baixo || cMoeda.esquerda || cMoeda.direita) {
 				ultimaMoeda = colisor.valor;
 				framesMoeda = (byte)(4000 * DiffTime);
 				pontos += colisor.valor;
@@ -79,18 +91,20 @@ public class Heroi extends Personagem {
 			}
 		}
 	}
-
-	@Override
-	public void DesenhaSe(Graphics2D dbg, int XMundo, int YMundo) {
-		// TODO Auto-generated method stub
-
+	
+	private void Colide(Colisao c) {
+		if (c.esquerda || c.direita) {
+			pos.x = oldPos.x;
+			//acceleration.x = 0;
+		}
+		if (c.cima || c.baixo) {
+			pos.y = oldPos.y;
+			acceleration.y = 0;
+		}
+		if (c.baixo) {
+			acceleration.y = 0;
+			jumped = false;
+		}
+		colidindo = c;
 	}
-
-	private void Colide() {
-		pos.x = oldPos.x;
-		pos.y = oldPos.y;
-		acceleration = new Vector2D(0, 0);
-		colidindo = true;
-	}
-
 }
