@@ -5,6 +5,7 @@ import java.util.Random;
 public class Moeda extends Sprite {
 
 	public byte valor;
+	public static byte gold = 8;
 	private Random r = new Random();
 
 	public Moeda(short _posX, short _posY, short _sizeX, short _sizeY,
@@ -27,7 +28,11 @@ public class Moeda extends Sprite {
 
 	@Override
 	public void DesenhaSe(Graphics2D dbg, int XMundo, int YMundo) {
-		dbg.setColor(Color.white);
+		if (valor > gold) {
+			dbg.setColor(Color.yellow);
+		} else {
+			dbg.setColor(Color.white);
+		}
 		dbg.fillRect((int) pos.x + (r.nextInt(4) - 2), (int) pos.y + (r.nextInt(4) - 2), valor * 2, valor * 2);
 		//DEBUG DA AREA DE COLISAO
 		//dbg.setColor(Color.red);

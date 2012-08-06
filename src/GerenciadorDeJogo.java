@@ -19,9 +19,19 @@ public class GerenciadorDeJogo {
 		instancia = this;
 		InstanciaObjetos();
 	}
+	
+	/**
+	 * Reinicia o gerenciador de jogo.<br />
+	 * @return Instância do Gerenciador 
+	 */
+	public static GerenciadorDeJogo Reinicia() {
+		instancia = new GerenciadorDeJogo();
+		return instancia;
+	}
 
 	/**
-	 * colocar os personagens sempre depois do mapa e objetos
+	 * Coloque aqui a inicialização dos elementos de jogo básicos, ou a geração do mapa <br />
+	 * Sempre coloque personagens após objetos
 	 */
 	private void InstanciaObjetos() {
 		for (int i = 0; i < 15; i++) {
@@ -37,7 +47,7 @@ public class GerenciadorDeJogo {
 		dbg.setColor(new Color(0.0f, 0.0f, 0.0f, 0.25f));
 		dbg.fillRect(0, 0, sizeX, sizeY);
 		dbg.setColor(new Color(1.0f, 1.0f, 1.0f, 0.25f));
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			dbg.drawArc(r.nextInt(GamePanel.PWIDTH), r.nextInt(GamePanel.PHEIGHT), r.nextInt(GamePanel.PWIDTH), r.nextInt(GamePanel.PHEIGHT), r.nextInt(10), r.nextInt(10));
 		}
 		for (int i = 0; i < moedas.size(); i++) {

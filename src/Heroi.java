@@ -16,7 +16,7 @@ public class Heroi extends Personagem {
 
 	@Override
 	public void DesenhaSe(Graphics2D dbg) {
-		dbg.setColor(Color.YELLOW);
+		dbg.setColor(Color.orange);
 		dbg.fillRect((int) pos.x, (int) pos.y, (int) size.x, (int) size.y);
 		if (framesMoeda > 0) {
 			dbg.setColor(Color.green);
@@ -35,6 +35,10 @@ public class Heroi extends Personagem {
 
 	@Override
 	public void SimulaSe(long DiffTime) {
+		if (ultimaMoeda > Moeda.gold) {
+			maxSpeed += 0.001f;
+			jumpSpeed += 0.001f;
+		}
 		oldPos.x = pos.x;
 		oldPos.y = pos.y;
 		if (CanvasGame.instance.DOWN) {

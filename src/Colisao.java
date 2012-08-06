@@ -1,28 +1,41 @@
 //import java.awt.Graphics2D;
 
-
+/**
+ * Guarda informações sobre uma colisão retangular
+ * @author Kroltan
+ */
 public class Colisao {
 	public boolean cima;
 	public boolean baixo;
 	public boolean esquerda;
 	public boolean direita;
-	public Sprite colisor;
 	
-	public Colisao(boolean _cima, boolean _baixo, boolean _esquerda, boolean _direita, Sprite _colisor) {
-		cima = _cima;
-		baixo = _baixo;
-		esquerda = _esquerda;
-		direita = _direita;
-		colisor = _colisor;
-	}
+	/**
+	 * Cria uma nova Colisão
+	 * @param _cima Colidindo na parte superior? (-y)
+	 * @param _baixo Colidindo na parte inferior? (+y)
+	 * @param _esquerda Colidindo na parte lateral esquerda? (-x)
+	 * @param _direita Colidindo na parte lateral direita? (+x)
+	 */
 	public Colisao(boolean _cima, boolean _baixo, boolean _esquerda, boolean _direita) {
 		cima = _cima;
 		baixo = _baixo;
 		esquerda = _esquerda;
 		direita = _direita;
-		colisor = null;
 	}
-	
+	public Colisao() {
+		cima = false;
+		baixo = false;
+		esquerda = false;
+		direita = false;
+	}
+	/**
+	 * Verifica se duas Sprites estão se sobrepondo<br />
+	 * Analogia: bola bate em um muro
+	 * @param colidindo Sprite a retornada informação de colisão (Analogia: bola)
+	 * @param colisor Sprite a ser colidida (Analogia: muro)
+	 * @return Informações de colisão de <b>colidindo</b>
+	 */
 	public static Colisao colideRetangulo(Sprite colidindo, Sprite colisor) {
 		boolean u = false, d = false, l = false, r = false;
 		if (colidindo.pos.x+colidindo.size.x >= colisor.pos.x && colidindo.pos.x <= colisor.pos.x+colisor.size.x && colidindo.pos.y+colidindo.size.y >= colisor.pos.y && colidindo.pos.y <= colisor.pos.y+colisor.size.y) {
@@ -39,9 +52,15 @@ public class Colisao {
 				u = true;
 			}
 		}
-		return new Colisao(u, d, l, r, colisor);
+		return new Colisao(u, d, l, r);
 	}
-	
+	/**
+	 * Verifica se algo está fora da tela
+	 * @param colidindo Sprite a ser checada
+	 * @param sizeTelaX Tamanho horizontal da tela
+	 * @param sizeTelaY Tamanho vertical da tela
+	 * @return Uma Colisão informando que lados da tela estão sendo tocados pelo <b>colidindo</b>
+	 */
 	public static Colisao colideTela(Sprite colidindo, int sizeTelaX, int sizeTelaY) {
 		boolean u = false, d = false, l = false, r = false;
 		
@@ -59,7 +78,11 @@ public class Colisao {
 		}
 		return new Colisao(u, d, l, r);
 	}
-	
+	/**
+	 * Mistura as duas colisões em uma só, permitindo cálculos mais genéricos
+	 * @param b A colisão a ser fundida
+	 * @return Uma nova colisão, com as informações da colisão original e de <b>b</b>
+	 */
 	public Colisao Mix(Colisao b) {
 		boolean u=false, d=false, l=false, r=false;
 		if (b.cima) {

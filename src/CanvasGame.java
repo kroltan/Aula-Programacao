@@ -66,8 +66,7 @@ public class CanvasGame extends GCanvas {
 			DOWN = true;
 		}
 		if (keyCode == KeyEvent.VK_R) {
-			GerenciadorDeJogo.instancia = new GerenciadorDeJogo();
-			gerenciadorDeJogo = GerenciadorDeJogo.instancia;
+			gerenciadorDeJogo = GerenciadorDeJogo.Reinicia();
 		}
 	}
 
