@@ -6,6 +6,7 @@ public class Heroi extends Personagem {
 	public float jumpSpeed = 2.9f;
 	public float maxSpeed = 2.9f;
 	public int pontos = 0;
+	public Color cor = Color.orange;
 	private boolean jumped;
 	private byte ultimaMoeda;
 	private byte framesMoeda = 5;
@@ -16,16 +17,13 @@ public class Heroi extends Personagem {
 
 	@Override
 	public void DesenhaSe(Graphics2D dbg) {
-		dbg.setColor(Color.orange);
+		dbg.setColor(cor);
 		dbg.fillRect((int) pos.x, (int) pos.y, (int) size.x, (int) size.y);
 		if (framesMoeda > 0) {
 			dbg.setColor(Color.green);
 			dbg.drawString(ultimaMoeda+"", pos.x+5, pos.y-20);
 			framesMoeda--;
 		}
-		//DEBUG DA AREA DE COLISAO
-		//dbg.setColor(Color.red);
-		//dbg.fillRect((int)pos.x, (int)pos.y, (int)size.x, (int)size.y);
 	}
 	@Override
 	public void DesenhaSe(Graphics2D dbg, int XMundo, int YMundo) {

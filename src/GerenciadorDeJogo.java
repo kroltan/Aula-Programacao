@@ -21,7 +21,7 @@ public class GerenciadorDeJogo {
 	}
 	
 	/**
-	 * Reinicia o gerenciador de jogo.<br />
+	 * Reinicia o gerenciador de jogo.
 	 * @return Instância do Gerenciador 
 	 */
 	public static GerenciadorDeJogo Reinicia() {
@@ -34,13 +34,17 @@ public class GerenciadorDeJogo {
 	 * Sempre coloque personagens após objetos
 	 */
 	private void InstanciaObjetos() {
-		for (int i = 0; i < 15; i++) {
-			obstaculos.add(new Obstaculo((short) r.nextInt(GamePanel.PWIDTH), (short) r.nextInt(GamePanel.PWIDTH), (short) 50, (short) 50));
+		MapLoader.Load("C:/level.txt");
+		if (heroi == null) {
+			heroi = new Heroi((short) 20, (short) 20, (short) 20, (short) 20, (short) 100);
 		}
-		for (int i = 0; i < 50; i++) {
-			moedas.add(new Moeda((short) r.nextInt(GamePanel.PWIDTH), (short) r.nextInt(GamePanel.PWIDTH), (short) 5, (short) 5, (byte) r.nextInt(10)));
-		}
-		heroi = new Heroi((short) 20, (short) 20, (short) 20, (short) 20, (short) 100);
+//		for (int i = 0; i < 15; i++) {
+//			obstaculos.add(new Obstaculo((short) r.nextInt(GamePanel.PWIDTH), (short) r.nextInt(GamePanel.PWIDTH), (short) 50, (short) 50));
+//		}
+//		for (int i = 0; i < 50; i++) {
+//			moedas.add(new Moeda((short) r.nextInt(GamePanel.PWIDTH), (short) r.nextInt(GamePanel.PWIDTH), (short) 5, (short) 5, (byte) r.nextInt(10)));
+//		}
+//		heroi = new Heroi((short) 20, (short) 20, (short) 20, (short) 20, (short) 100);
 	}
 
 	public void desenhaSe(Graphics2D dbg, int sizeX, int sizeY) {
