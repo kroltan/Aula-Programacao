@@ -217,7 +217,6 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public static void main(String args[]) {
 		GamePanel ttPanel = new GamePanel();
-
 		// create a JFrame to hold the timer test JPanel
 		JFrame app = new JFrame("Leonardo");
 		app.getContentPane().add(ttPanel, BorderLayout.CENTER);
@@ -227,6 +226,7 @@ public class GamePanel extends JPanel implements Runnable {
 		app.setResizable(false);
 		app.setVisible(true);
 	} // end of main()
+
 
 } // end of GamePanel class
 
