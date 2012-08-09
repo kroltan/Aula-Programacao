@@ -7,14 +7,8 @@ public class MapLoader {
 	static boolean Load(String location) {
 		try {
 			//StringBuilder contents = new StringBuilder();
-			URL url = MapLoader.class.getResource(location); //não encontrado quando em JAR
-			BufferedReader input = null;
-			try {
-				input = new BufferedReader(new FileReader(new File(url.toURI())));
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			BufferedReader input = new BufferedReader(new InputStreamReader(MapLoader.class.getResourceAsStream(location))); //não encontrado quando em JAR
+			
 			try {
 				String line = null;
 				while ((line = input.readLine()) != null) {
