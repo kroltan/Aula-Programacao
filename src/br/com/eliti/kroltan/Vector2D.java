@@ -1,3 +1,4 @@
+package br.com.eliti.kroltan;
 
 public class Vector2D {
 	public float x, y;

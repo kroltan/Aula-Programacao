@@ -1,0 +1,10 @@
+meta.title,Mapa de Teste do Kroltan
+map.spawn,100,100,20,20,200
+map.obstacle,0,0,200,10
+map.obstacle,0,0,10,200
+map.obstacle,200,0,10,200
+map.coin,50,570,10,10,1
+map.coin,100,570,10,10,2
+map.coin,150,570,10,10,3
+map.coin,200,570,10,10,4
+map.coin,250,570,10,10,5

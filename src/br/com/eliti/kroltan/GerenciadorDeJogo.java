@@ -1,3 +1,4 @@
+package br.com.eliti.kroltan;
 import java.awt.Color;
 
 import java.awt.Graphics2D;
@@ -34,7 +35,7 @@ public class GerenciadorDeJogo {
 	 * Sempre coloque personagens após objetos
 	 */
 	private void InstanciaObjetos() {
-		if (MapLoader.Load("C:/level.txt")) {
+		if (MapLoader.Load("/levels/level.txt")) {
 			if (heroi == null) {
 				heroi = new Heroi((short) 20, (short) 20, (short) 20, (short) 20, (short) 100);
 			}
@@ -76,5 +77,4 @@ public class GerenciadorDeJogo {
 			boolean cliqueMouse) {
 		heroi.SimulaSe(diffTime);
 	}
-
 }

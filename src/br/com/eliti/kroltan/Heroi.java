@@ -1,3 +1,4 @@
+package br.com.eliti.kroltan;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -33,6 +34,7 @@ public class Heroi extends Personagem {
 
 	@Override
 	public void SimulaSe(long DiffTime) {
+		
 		if (ultimaMoeda > Moeda.gold) {
 			maxSpeed += 0.001f;
 			jumpSpeed += 0.001f;

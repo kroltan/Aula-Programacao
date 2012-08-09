@@ -1,3 +1,4 @@
+package br.com.eliti.kroltan;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
