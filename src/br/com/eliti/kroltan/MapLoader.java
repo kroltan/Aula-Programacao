@@ -27,10 +27,6 @@ public class MapLoader {
 						if (obj[0].equals("map.spawn") && obj.length >= 6) {
 							GerenciadorDeJogo.instancia.heroi = new Heroi((short)Integer.parseInt(obj[1]), (short)Integer.parseInt(obj[2]), (short)Integer.parseInt(obj[3]), (short)Integer.parseInt(obj[4]), (short) Integer.parseInt(obj[5]));
 						}
-						if (obj[0].equals("map.coin") && obj.length ==4) {
-							System.out.println("asdf");
-							GerenciadorDeJogo.instancia.moedas.add(new Moeda((short)Integer.parseInt(obj[1]), (short)Integer.parseInt(obj[2]), (short)0, (short)0, (byte) Integer.parseInt(obj[3])));
-						}
 					} 
 					if (obj.length >= 2) {
 						if (obj[0].equals("meta.title")) {
@@ -39,7 +35,6 @@ public class MapLoader {
 						}
 					}
 					if (obj[0].equals("map.coin") && obj.length == 4) {
-						System.out.println("asdf");
 						GerenciadorDeJogo.instancia.moedas.add(new Moeda((short)Integer.parseInt(obj[1]), (short)Integer.parseInt(obj[2]), (short)5, (short)5, (byte) Integer.parseInt(obj[3])));
 					}
 				}
