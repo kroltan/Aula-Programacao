@@ -1,6 +1,5 @@
 package br.com.eliti.kroltan;
 import java.awt.Color;
-
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,12 +7,14 @@ import java.util.Random;
 public class GerenciadorDeJogo {
 
 	public static GerenciadorDeJogo instancia;
+	public static String nextLevel = "/levels/level0.txt";
 	public double scoreJogador;
 	public int mouseX, mouseY;
 	public short gravidade = 4;
-	Heroi heroi;
 	public ArrayList<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
 	public ArrayList<Moeda> moedas = new ArrayList<Moeda>();
+	public Finish finish;
+	Heroi heroi;
 	Random r = new Random();
 
 	public GerenciadorDeJogo() {
@@ -35,7 +36,7 @@ public class GerenciadorDeJogo {
 	 * Sempre coloque personagens após objetos
 	 */
 	private void InstanciaObjetos() {
-		if (MapLoader.Load("/levels/level.txt")) {
+		if (MapLoader.Load(nextLevel)) {
 			if (heroi == null) {
 				heroi = new Heroi((short) 20, (short) 20, (short) 20, (short) 20, (short) 100);
 			}
@@ -63,6 +64,9 @@ public class GerenciadorDeJogo {
 		for (int i = 0; i < obstaculos.size(); i++) {
 			obstaculos.get(i).DesenhaSe(dbg, 0, 0);
 		}
+		if (finish != null) {
+			finish.DesenhaSe(dbg, 0, 0);
+		}
 		heroi.DesenhaSe(dbg);
 		dbg.setColor(Color.yellow);
 		dbg.drawString("Aceleração: " + heroi.acceleration, 10, 10);
@@ -73,8 +77,11 @@ public class GerenciadorDeJogo {
 		dbg.drawString("Pontos: " + heroi.pontos, 10, 50);
 	}
 
-	public void simulaSe(long diffTime, int Xmouse, int Ymouse,
-			boolean cliqueMouse) {
+	public void simulaSe(long diffTime, int Xmouse, int Ymouse, boolean cliqueMouse) {
 		heroi.SimulaSe(diffTime);
+		if (finish != null) {
+			finish.SimulaSe(diffTime);
+		}
 	}
+	
 }

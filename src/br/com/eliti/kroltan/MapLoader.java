@@ -1,7 +1,5 @@
 package br.com.eliti.kroltan;
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public class MapLoader {
 	static boolean Load(String location) {
@@ -20,6 +18,9 @@ public class MapLoader {
 						}
 						if (obj[0].equals("map.spawn") && obj.length >= 6) {
 							GerenciadorDeJogo.instancia.heroi = new Heroi((short)Integer.parseInt(obj[1]), (short)Integer.parseInt(obj[2]), (short)Integer.parseInt(obj[3]), (short)Integer.parseInt(obj[4]), (short) Integer.parseInt(obj[5]));
+						}
+						if (obj[0].equals("map.finish") && obj.length >= 6) {
+							GerenciadorDeJogo.instancia.finish = new Finish((short)Integer.parseInt(obj[1]), (short)Integer.parseInt(obj[2]), (short)Integer.parseInt(obj[3]), (short)Integer.parseInt(obj[4]), obj[5]);
 						}
 					} 
 					if (obj.length >= 2) {
