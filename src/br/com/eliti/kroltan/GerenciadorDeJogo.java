@@ -8,11 +8,13 @@ public class GerenciadorDeJogo {
 
 	public static GerenciadorDeJogo instancia;
 	public static String nextLevel = "/levels/level0.txt";
+	public String title = "Random Level";
 	public double scoreJogador;
 	public int mouseX, mouseY;
 	public short gravidade = 4;
 	public ArrayList<Obstaculo> obstaculos = new ArrayList<Obstaculo>();
 	public ArrayList<Moeda> moedas = new ArrayList<Moeda>();
+	public ArrayList<Texto> textos = new ArrayList<Texto>();
 	public Finish finish;
 	Heroi heroi;
 	Random r = new Random();
@@ -64,6 +66,9 @@ public class GerenciadorDeJogo {
 		for (int i = 0; i < obstaculos.size(); i++) {
 			obstaculos.get(i).DesenhaSe(dbg, 0, 0);
 		}
+		for (int i = 0; i < textos.size(); i++) {
+			textos.get(i).DesenhaSe(dbg, 0, 0);
+		}
 		if (finish != null) {
 			finish.DesenhaSe(dbg, 0, 0);
 		}
@@ -75,6 +80,7 @@ public class GerenciadorDeJogo {
 		dbg.setColor(Color.white);
 		dbg.drawString("Aperte R para reiniciar", 10, 40);
 		dbg.drawString("Pontos: " + heroi.pontos, 10, 50);
+		dbg.drawString("Mapa: " + title, 0, GamePanel.PHEIGHT-3);
 	}
 
 	public void simulaSe(long diffTime, int Xmouse, int Ymouse, boolean cliqueMouse) {

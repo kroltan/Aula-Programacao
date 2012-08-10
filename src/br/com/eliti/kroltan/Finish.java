@@ -5,21 +5,22 @@ import java.awt.Graphics2D;
 
 public class Finish extends Sprite {
 
-	public Finish(Vector2D _pos, Vector2D _size, String next) {
+	private String next;
+	public Finish(Vector2D _pos, Vector2D _size, String _next) {
 		super(_pos, _size);
-		GerenciadorDeJogo.nextLevel = next;
+		next = _next;
 	}
 	
-	public Finish(short _posX, short _posY, short _sizeX, short _sizeY, String next) {
+	public Finish(short _posX, short _posY, short _sizeX, short _sizeY, String _next) {
 		super(_posX, _posY, _sizeX, _sizeY);
-		GerenciadorDeJogo.nextLevel = next;
-		System.out.println(next);
+		next = _next;
 	}
 
 	@Override
 	public void SimulaSe(long DiffTime) {
 		Colisao c = Colisao.colideRetangulo(GerenciadorDeJogo.instancia.heroi, this);
 		if (c.cima || c.baixo || c.esquerda || c.direita) {
+			GerenciadorDeJogo.nextLevel = next;
 			CanvasGame.instance.gerenciadorDeJogo = GerenciadorDeJogo.Reinicia();
 		}
 	}

@@ -1,1 +1,2 @@
+meta.title,Test 2
 map.obstacle,0,0,10,10
