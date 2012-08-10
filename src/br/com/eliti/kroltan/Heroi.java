@@ -34,13 +34,13 @@ public class Heroi extends Personagem {
 
 	@Override
 	public void SimulaSe(long DiffTime) {
-		
+		oldPos.x = pos.x;
+		oldPos.y = pos.y;
+		pos.add(acceleration);
 		if (ultimaMoeda > Moeda.gold) {
 			maxSpeed += 0.001f;
 			jumpSpeed += 0.001f;
 		}
-		oldPos.x = pos.x;
-		oldPos.y = pos.y;
 		if (CanvasGame.instance.DOWN) {
 			acceleration.y += vel * DiffTime / 1000.0f;
 		}
@@ -73,7 +73,7 @@ public class Heroi extends Personagem {
 		if (acceleration.y < -maxSpeed) {
 			acceleration.y = -maxSpeed;
 		}
-		pos.add(acceleration);
+		
 		colidindo = new Colisao(false, false, false, false);
 		for (int i = 0; i < GerenciadorDeJogo.instancia.obstaculos.size(); i++) {
 			Obstaculo colisor = GerenciadorDeJogo.instancia.obstaculos.get(i);
@@ -106,7 +106,6 @@ public class Heroi extends Personagem {
 			acceleration.y = 0;
 		}
 		if (c.baixo) {
-			acceleration.y = 0;
 			jumped = false;
 		}
 		colidindo = c;

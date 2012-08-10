@@ -37,7 +37,7 @@ public class Colisao {
 	 * @param colisor Sprite a ser colidida (Analogia: muro)
 	 * @return Informações de colisão de <b>colidindo</b>
 	 */
-	//FIXME colide todos os lados junto.
+//	FIXME colide todos os lados junto.
 	public static Colisao colideRetangulo(Sprite colidindo, Sprite colisor) {
 		boolean u = false, d = false, l = false, r = false;
 		if (colidindo.pos.x+colidindo.size.x >= colisor.pos.x && colidindo.pos.x <= colisor.pos.x+colisor.size.x && colidindo.pos.y+colidindo.size.y >= colisor.pos.y && colidindo.pos.y <= colisor.pos.y+colisor.size.y) {
