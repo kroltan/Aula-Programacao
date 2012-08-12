@@ -1,10 +1,10 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+
 public class Heroi extends Personagem {
 
-	public float jumpSpeed = 2.9f;
 	public float maxSpeed = 2.9f;
 	public int pontos = 0;
 	public Color cor = Color.orange;
@@ -39,17 +39,15 @@ public class Heroi extends Personagem {
 		pos.add(acceleration);
 		if (ultimaMoeda > Moeda.gold) {
 			maxSpeed += 0.001f;
-			jumpSpeed += 0.001f;
 		}
 		if (CanvasGame.instance.DOWN) {
 			acceleration.y += vel * DiffTime / 1000.0f;
 		}
 		if (CanvasGame.instance.UP && !jumped) {
 			jumped = true;
-			acceleration.y = -jumpSpeed;
+			acceleration.y = -maxSpeed;
 		} else {
-			acceleration.y += GerenciadorDeJogo.instancia.gravidade * DiffTime
-					/ 1000.0f;
+			acceleration.y += GerenciadorDeJogo.instancia.gravidade * DiffTime / 1000.0f;
 		}
 		if (!CanvasGame.instance.LEFT || !CanvasGame.instance.RIGHT) {
 			acceleration.x = 0;
@@ -73,21 +71,20 @@ public class Heroi extends Personagem {
 		if (acceleration.y < -maxSpeed) {
 			acceleration.y = -maxSpeed;
 		}
-		
-		colidindo = new Colisao(false, false, false, false);
 		for (int i = 0; i < GerenciadorDeJogo.instancia.obstaculos.size(); i++) {
 			Obstaculo colisor = GerenciadorDeJogo.instancia.obstaculos.get(i);
-			Colide(Colisao.colideRetangulo(this, colisor));
+			if (Colisao.colideRetangulo(this, colisor)) {
+				Colide();
+			}
+			
 		}
-		Colisao cTela = Colisao.colideTela(this, GamePanel.PWIDTH, GamePanel.PHEIGHT);
-		if (cTela.cima || cTela.baixo || cTela.esquerda || cTela.direita) {
-			Colide(cTela);
+		if (Colisao.colideTela(this, GamePanel.PWIDTH, GamePanel.PHEIGHT)) {
+			Colide();
 		}
 		
 		for (int i = 0; i < GerenciadorDeJogo.instancia.moedas.size(); i++) {
 			Moeda colisor = GerenciadorDeJogo.instancia.moedas.get(i);
-			Colisao cMoeda = Colisao.colideRetangulo(this, colisor);
-			if (cMoeda.cima || cMoeda.baixo || cMoeda.esquerda || cMoeda.direita) {
+			if (Colisao.colideRetangulo(this, colisor)) {
 				ultimaMoeda = colisor.valor;
 				framesMoeda = (byte)(4000 * DiffTime);
 				pontos += colisor.valor;
@@ -96,18 +93,10 @@ public class Heroi extends Personagem {
 		}
 	}
 	
-	private void Colide(Colisao c) {
-		if (c.esquerda || c.direita) {
-			pos.x = oldPos.x;
-			//acceleration.x = 0;
-		}
-		if (c.cima || c.baixo) {
-			pos.y = oldPos.y;
-			acceleration.y = 0;
-		}
-		if (c.baixo) {
-			jumped = false;
-		}
-		colidindo = c;
+	private void Colide() {
+		pos.x = oldPos.x;
+		pos.y = oldPos.y;
+		acceleration = new Vector2D(0, 0);
+		jumped = false;
 	}
 }

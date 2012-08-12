@@ -1,7 +1,8 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
+
 
 public class Moeda extends Sprite {
 

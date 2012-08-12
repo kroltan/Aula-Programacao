@@ -1,7 +1,8 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
 
 public class Finish extends Sprite {
 
@@ -18,8 +19,7 @@ public class Finish extends Sprite {
 
 	@Override
 	public void SimulaSe(long DiffTime) {
-		Colisao c = Colisao.colideRetangulo(GerenciadorDeJogo.instancia.heroi, this);
-		if (c.cima || c.baixo || c.esquerda || c.direita) {
+		if (Colisao.colideRetangulo(GerenciadorDeJogo.instancia.heroi, this)) {
 			GerenciadorDeJogo.nextLevel = next;
 			CanvasGame.instance.gerenciadorDeJogo = GerenciadorDeJogo.Reinicia();
 		}

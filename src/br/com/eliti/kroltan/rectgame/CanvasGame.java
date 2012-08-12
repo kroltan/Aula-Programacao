@@ -1,4 +1,4 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -6,8 +6,11 @@ import java.awt.event.MouseEvent;
 public class CanvasGame extends GCanvas {
 	public static CanvasGame instance = null;
 	public static boolean controleAnimacaoInv;
-	boolean LEFT, RIGHT, UP, DOWN;
-	GerenciadorDeJogo gerenciadorDeJogo;
+	public boolean LEFT;
+	public boolean RIGHT;
+	public boolean UP;
+	public boolean DOWN;
+	public GerenciadorDeJogo gerenciadorDeJogo;
 
 	private boolean cliqueMouse;
 	public static int Xmouse, Ymouse;

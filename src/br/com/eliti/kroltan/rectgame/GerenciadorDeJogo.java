@@ -1,8 +1,9 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
+
 
 public class GerenciadorDeJogo {
 
@@ -16,7 +17,7 @@ public class GerenciadorDeJogo {
 	public ArrayList<Moeda> moedas = new ArrayList<Moeda>();
 	public ArrayList<Texto> textos = new ArrayList<Texto>();
 	public Finish finish;
-	Heroi heroi;
+	public Heroi heroi;
 	Random r = new Random();
 
 	public GerenciadorDeJogo() {
@@ -74,13 +75,11 @@ public class GerenciadorDeJogo {
 		}
 		heroi.DesenhaSe(dbg);
 		dbg.setColor(Color.yellow);
-		dbg.drawString("Aceleração: " + heroi.acceleration, 10, 10);
-		dbg.drawString("Colide: " + heroi.colidindo, 10, 20);
+		//dbg.drawString("Aceleração: " + heroi.acceleration, 10, 10);
 		dbg.drawString("FPS: " + GamePanel.instancia.FPS, 200, 10);
 		dbg.setColor(Color.white);
 		dbg.drawString("Aperte R para reiniciar", 10, 40);
 		dbg.drawString("Pontos: " + heroi.pontos, 10, 50);
-		dbg.drawString("Mapa: " + title, 0, GamePanel.PHEIGHT-3);
 	}
 
 	public void simulaSe(long diffTime, int Xmouse, int Ymouse, boolean cliqueMouse) {

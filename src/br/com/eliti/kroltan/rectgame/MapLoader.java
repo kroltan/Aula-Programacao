@@ -1,5 +1,6 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 import java.io.*;
+
 
 public class MapLoader {
 	static boolean Load(String location) {

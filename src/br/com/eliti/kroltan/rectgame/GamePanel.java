@@ -1,4 +1,4 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 		// TODO CRIAR PERSONNAHEM AKI...
 
 		instancia = this;
-		CanvasAtivo = new CanvasGame();
+		CanvasAtivo = new CanvasMenu();
 		setBackground(Color.WHITE);
 		setPreferredSize(new Dimension(this.PWIDTH, this.PHEIGHT));
 

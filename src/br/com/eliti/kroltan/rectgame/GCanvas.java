@@ -1,4 +1,4 @@
-package br.com.eliti.kroltan;
+package br.com.eliti.kroltan.rectgame;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
